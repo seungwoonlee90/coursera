@@ -24,6 +24,12 @@ st.header("Where are the most people injured in NYC ")
 injured_people = st.slider("Number of persons injured in vehicle collisions",0,19)
 st.map(data.query("injured_people >= @injured_people")[["latitude", "longitude"]].dropna(how="any"))
 
+st.header("How many collisions occur during a given time of day?")
+hour = st.slider("Hour to look at", 0, 23)
+data = data[data['date/time'].dt.hour == hour]
+
+
+
 
 if st.checkbox("Show Raw Data", False) :
     st.subheader('Raw Data')
